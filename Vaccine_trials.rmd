@@ -1,0 +1,35 @@
+---
+title: "Vaccine_performance"
+author: "Dr K"
+date: "11/9/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require(tigerstats)
+require(tidyverse)
+require(knitr)
+```
+
+## R table
+
+
+```{r}
+groupsize = 44000
+subgp = groupsize/2
+vacine = c(subgp-9,9)
+placebo =  c(subgp-85,85)
+results = as.table(cbind(vacine,placebo))
+rownames(results) <- c("none","covid")
+
+```
+
+```{r}
+barchartGC(results,type = "percent")
+```
+
+```{r}
+fisher.test(results)
+```
+
